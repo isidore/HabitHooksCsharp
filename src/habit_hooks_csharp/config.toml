@@ -1,0 +1,7 @@
+language = "csharp"
+files = ["**/*.cs"]
+sensors = ["roslyn", "comment"]
+transformers = []
+
+[runners]
+cs = "dotnet"

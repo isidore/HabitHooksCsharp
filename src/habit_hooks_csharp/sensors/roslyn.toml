@@ -1,0 +1,44 @@
+command = """
+files=$(printf '%s\\n' ${files})
+if [ -z "$files" ]; then echo '[]'; exit 0; fi
+set -o pipefail
+warnings=$(dotnet build --no-incremental -v quiet 2>&1 | grep -E ': warning (CA|IDE|CS)[0-9]+:' | grep -F -f <(printf '%s\\n' "$files") || true)
+if [ -z "$warnings" ]; then echo '[]'; exit 0; fi
+echo "$warnings" | jq -R -s '
+  split("\\n") | map(select(length > 0))
+  | map(capture("^(?<file>[^(]+)\\\\((?<line>[0-9]+),(?<column>[0-9]+)\\\\): warning (?<rule>[A-Za-z]+[0-9]+): (?<message>.*)$")?)
+  | map(select(. != null))
+  | map(. + {
+      smell: ({
+        "CA1502": "high-complexity",
+        "CA1505": "high-complexity",
+        "CA1506": "high-coupling",
+        "CA1801": "unused-parameter",
+        "CA1811": "unused-private-member",
+        "CA1822": "unused-member",
+        "CA1823": "unused-field",
+        "CS0219": "unused-variable",
+        "CS0168": "unused-variable",
+        "IDE0051": "unused-private-member",
+        "IDE0052": "unused-private-member",
+        "IDE0060": "unused-parameter",
+        "IDE0005": "unused-import"
+      }[.rule] // .rule)
+    })
+  | group_by(.smell)
+  | map({
+      smell: .[0].smell,
+      details: {},
+      issues: map({
+        key: .file,
+        details: {
+          file: .file,
+          line: (.line | tonumber),
+          column: (.column | tonumber),
+          message: .message,
+          source: ("roslyn:" + .rule)
+        }
+      })
+    })
+'
+"""
