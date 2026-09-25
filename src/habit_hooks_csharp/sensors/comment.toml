@@ -1,1 +1,1 @@
-command = "dotnet ${dir}/../comment-tool/bin/Release/net8.0/comment-tool.dll ${files}"
+argv = ["dotnet", "${dir}/../comment-tool/bin/Release/net8.0/comment-tool.dll", "${files}"]
