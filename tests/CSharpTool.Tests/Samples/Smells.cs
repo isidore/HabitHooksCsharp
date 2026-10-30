@@ -52,4 +52,19 @@ public class Shapes
         else if (value > 0) return "small";
         else return "none";
     }
+
+    public string Classify(int a, string? b)
+    {
+        if (a > 100 && a < 200) return "range";
+        if (a < 0 || a > 1000) return "outside";
+        if (b == "x") return "x";
+        var name = b ?? "none";
+        var sign = a > 0 ? "positive" : "negative";
+        switch (a)
+        {
+            case 1: return "one";
+            case 2: return "two";
+        }
+        return name + sign;
+    }
 }

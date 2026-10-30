@@ -35,6 +35,15 @@
                     "message": "Long has 12 statements (reported at 12 or more)",
                     "source": "csharp:oversized-function"
                 }
+            },
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 56,
+                    "message": "Classify has 12 statements (reported at 12 or more)",
+                    "source": "csharp:oversized-function"
+                }
             }
         ]
     },
@@ -49,6 +58,21 @@
                     "line": 39,
                     "message": "\u0060if\u0060 nested 3 deep (reported at 3 or more)",
                     "source": "csharp:deep-nesting"
+                }
+            }
+        ]
+    },
+    {
+        "smell": "high-complexity",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 56,
+                    "message": "Classify has cyclomatic complexity 10 (reported at 10 or more)",
+                    "source": "csharp:high-complexity"
                 }
             }
         ]

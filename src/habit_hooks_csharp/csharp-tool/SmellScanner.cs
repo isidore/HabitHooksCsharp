@@ -10,6 +10,7 @@ public static class SmellScanner
     const int MaxParameters = 4;
     const int MaxStatements = 12;
     const int MaxNesting = 3;
+    const int MaxComplexity = 10;
 
     public static string Scan(IEnumerable<string> paths)
     {
@@ -35,6 +36,7 @@ public static class SmellScanner
         return TooManyParameters(root)
             .Concat(OversizedMethods(root))
             .Concat(DeepNesting(root))
+            .Concat(HighComplexity(root))
             .Select(smell => smell.ToIssue(path, tree));
     }
 
@@ -50,6 +52,24 @@ public static class SmellScanner
             .Where(m => m.statements >= MaxStatements)
             .Select(m => new Smell("oversized-function", m.method,
                 $"{NameOf(m.method)} has {m.statements} statements (reported at {MaxStatements} or more)"));
+
+    static IEnumerable<Smell> HighComplexity(SyntaxNode root) =>
+        Methods(root)
+            .Select(method => (method, complexity: CyclomaticComplexity(method)))
+            .Where(m => m.complexity >= MaxComplexity)
+            .Select(m => new Smell("high-complexity", m.method,
+                $"{NameOf(m.method)} has cyclomatic complexity {m.complexity} (reported at {MaxComplexity} or more)"));
+
+    // One path through the method, plus one for each decision point.
+    static int CyclomaticComplexity(BaseMethodDeclarationSyntax method) =>
+        1 + method.DescendantNodesAndTokens().Count(IsDecision);
+
+    static bool IsDecision(SyntaxNodeOrToken item) => item.Kind() is
+        SyntaxKind.IfStatement or SyntaxKind.WhileStatement or SyntaxKind.ForStatement
+        or SyntaxKind.ForEachStatement or SyntaxKind.DoStatement or SyntaxKind.CatchClause
+        or SyntaxKind.CaseSwitchLabel or SyntaxKind.CasePatternSwitchLabel or SyntaxKind.SwitchExpressionArm
+        or SyntaxKind.ConditionalExpression
+        or SyntaxKind.AmpersandAmpersandToken or SyntaxKind.BarBarToken or SyntaxKind.QuestionQuestionToken;
 
     // Reports the control statement that first reaches the limit, not every one inside it.
     static IEnumerable<Smell> DeepNesting(SyntaxNode root) =>
