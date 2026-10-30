@@ -2,8 +2,15 @@
 name = "habit-hooks-csharp"
 version = "0.1.0"
 description = "The C# Habit Hooks plugin"
+readme = "README.md"
+keywords = ["habit-hooks", "csharp", "dotnet", "roslyn", "code-smells", "refactoring", "ai-coding-agents"]
 requires-python = ">=3.11"
 dependencies = []
+
+[project.urls]
+Repository = "https://github.com/isidore/HabitHooksCsharp"
+Issues = "https://github.com/isidore/HabitHooksCsharp/issues"
+"Habit Hooks" = "https://github.com/habit-hooks/habit-hooks"
 
 [project.entry-points."habit_hooks.plugins"]
 csharp = "habit_hooks_csharp"
