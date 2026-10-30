@@ -14,6 +14,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/habit_hooks_csharp"]
-artifacts = ["src/habit_hooks_csharp/comment-tool/bin/Release/net8.0/*"]
+artifacts = ["src/habit_hooks_csharp/csharp-tool/bin/Release/net8.0/*"]
 
 [tool.hatch.build.hooks.custom]

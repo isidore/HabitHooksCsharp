@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/habit_hooks_csharp/comment-tool/comment-tool.csproj" />
+    <ProjectReference Include="../../src/habit_hooks_csharp/csharp-tool/csharp-tool.csproj" />
   </ItemGroup>
 
   <ItemGroup>

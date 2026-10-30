@@ -5,7 +5,7 @@ from pathlib import Path
 
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
-TOOL = Path("src/habit_hooks_csharp/comment-tool")
+TOOL = Path("src/habit_hooks_csharp/csharp-tool")
 
 
 class CustomBuildHook(BuildHookInterface):
