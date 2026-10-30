@@ -12,6 +12,11 @@ public class CommentScannerTest
         Approvals.VerifyJson(CommentScanner.Scan(["Samples/Comments.cs"]));
 
     [Fact]
+    public void ReportsFileHeaderAndDocCommentsWhenAsked() =>
+        Approvals.VerifyJson(CommentScanner.Scan(["Samples/Comments.cs"],
+            new CommentOptions(IncludeFileHeader: true, IncludeDocComments: true)));
+
+    [Fact]
     public void ReportsNothingForMissingFiles() =>
         Assert.Equal("[]", CommentScanner.Scan(["Samples/Missing.cs"]));
 }

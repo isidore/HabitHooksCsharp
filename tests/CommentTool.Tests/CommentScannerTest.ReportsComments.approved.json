@@ -7,33 +7,6 @@
                 "key": "Samples/Comments.cs",
                 "details": {
                     "file": "Samples/Comments.cs",
-                    "line": 1,
-                    "message": "single-line comment: \u0022// Copyright 2024 Example Contributors\u0022",
-                    "source": "comment:non-essential"
-                }
-            },
-            {
-                "key": "Samples/Comments.cs",
-                "details": {
-                    "file": "Samples/Comments.cs",
-                    "line": 2,
-                    "message": "single-line comment: \u0022// Licensed under the Apache License, Version 2.0\u0022",
-                    "source": "comment:non-essential"
-                }
-            },
-            {
-                "key": "Samples/Comments.cs",
-                "details": {
-                    "file": "Samples/Comments.cs",
-                    "line": 8,
-                    "message": "doc-line comment: \u0022\u003Csummary\u003E /// Adds two numbers together. /// \u003C/sum...\u0022",
-                    "source": "comment:non-essential"
-                }
-            },
-            {
-                "key": "Samples/Comments.cs",
-                "details": {
-                    "file": "Samples/Comments.cs",
                     "line": 16,
                     "message": "single-line comment: \u0022// add the two numbers and return the result\u0022",
                     "source": "comment:non-essential"
