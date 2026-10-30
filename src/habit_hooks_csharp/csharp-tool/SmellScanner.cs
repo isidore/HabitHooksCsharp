@@ -37,6 +37,7 @@ public static class SmellScanner
             .Concat(OversizedMethods(root))
             .Concat(DeepNesting(root))
             .Concat(HighComplexity(root))
+            .Concat(SwallowedExceptions(root))
             .Select(smell => smell.ToIssue(path, tree));
     }
 
@@ -52,6 +53,12 @@ public static class SmellScanner
             .Where(m => m.statements >= MaxStatements)
             .Select(m => new Smell("oversized-function", m.method,
                 $"{NameOf(m.method)} has {m.statements} statements (reported at {MaxStatements} or more)"));
+
+    // A catch block with no statements, even if it holds a comment.
+    static IEnumerable<Smell> SwallowedExceptions(SyntaxNode root) =>
+        root.DescendantNodes().OfType<CatchClauseSyntax>()
+            .Where(clause => clause.Block.Statements.Count == 0)
+            .Select(clause => new Smell("swallowed-exception", clause, "empty catch block"));
 
     static IEnumerable<Smell> HighComplexity(SyntaxNode root) =>
         Methods(root)

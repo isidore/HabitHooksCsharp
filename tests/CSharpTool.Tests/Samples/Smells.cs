@@ -67,4 +67,16 @@ public class Shapes
         }
         return name + sign;
     }
+
+    public void Close(System.IO.Stream stream)
+    {
+        try { stream.Dispose(); }
+        catch (System.IO.IOException) { }
+    }
+
+    public void Rethrow(System.IO.Stream stream)
+    {
+        try { stream.Dispose(); }
+        catch (System.IO.IOException) { throw; }
+    }
 }
