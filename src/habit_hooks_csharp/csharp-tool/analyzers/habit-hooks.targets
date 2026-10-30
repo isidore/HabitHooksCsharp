@@ -1,0 +1,15 @@
+<Project>
+  <!-- Imported only by the habit-hooks analyzers build (-p:CustomAfterMicrosoftCommonTargets=...),
+       never by the project's normal builds. Turns on the analyzers habit-hooks maps to smells and
+       keeps their warnings as warnings. -->
+  <PropertyGroup>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors></WarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <EditorConfigFiles Include="$(MSBuildThisFileDirectory)habit-hooks.globalconfig" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)CodeMetricsConfig.txt" />
+  </ItemGroup>
+</Project>

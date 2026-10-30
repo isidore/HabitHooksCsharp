@@ -1,0 +1,7 @@
+/repo/src/Lib/Unused.cs(3,1): warning IDE0005: Using directive is unnecessary. [/repo/src/Lib/Lib.csproj]
+/repo/src/Lib/Unused.cs(9,17): warning IDE0051: Private member 'Unused.Helper' is unused [/repo/src/Lib/Lib.csproj]
+/repo/src/Lib/Unused.cs(12,25): warning CA1822: Member 'Area' does not access instance data and can be marked as static [/repo/src/Lib/Lib.csproj]
+/repo/src/Lib/Other.cs(4,9): warning IDE0060: Remove unused parameter 'x' [/repo/src/Lib/Lib.csproj]
+/repo/src/Lib/Unused.cs(20,1): warning CS1591: Missing XML comment for publicly visible type or member [/repo/src/Lib/Lib.csproj]
+    /repo/src/Lib/Unused.cs(9,17): warning IDE0051: Private member 'Unused.Helper' is unused [/repo/src/Lib/Lib.csproj]
+Build succeeded.

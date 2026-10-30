@@ -1,0 +1,12 @@
+is_global = true
+global_level = 100
+
+# coupling (thresholds in CodeMetricsConfig.txt); complexity comes from the smells sensor
+dotnet_diagnostic.CA1506.severity = warning
+# unused code
+dotnet_diagnostic.CA1822.severity = warning
+dotnet_diagnostic.CA1823.severity = warning
+dotnet_diagnostic.IDE0051.severity = warning
+dotnet_diagnostic.IDE0052.severity = warning
+dotnet_diagnostic.IDE0060.severity = warning
+dotnet_diagnostic.IDE0005.severity = warning

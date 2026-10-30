@@ -1,0 +1,47 @@
+﻿[
+    {
+        "smell": "unused-import",
+        "details": {},
+        "issues": [
+            {
+                "key": "src/Lib/Unused.cs",
+                "details": {
+                    "file": "src/Lib/Unused.cs",
+                    "line": 3,
+                    "message": "IDE0005: Using directive is unnecessary.",
+                    "source": "roslyn:IDE0005"
+                }
+            }
+        ]
+    },
+    {
+        "smell": "unused-private-member",
+        "details": {},
+        "issues": [
+            {
+                "key": "src/Lib/Unused.cs",
+                "details": {
+                    "file": "src/Lib/Unused.cs",
+                    "line": 9,
+                    "message": "IDE0051: Private member \u0027Unused.Helper\u0027 is unused",
+                    "source": "roslyn:IDE0051"
+                }
+            }
+        ]
+    },
+    {
+        "smell": "unused-member",
+        "details": {},
+        "issues": [
+            {
+                "key": "src/Lib/Unused.cs",
+                "details": {
+                    "file": "src/Lib/Unused.cs",
+                    "line": 12,
+                    "message": "CA1822: Member \u0027Area\u0027 does not access instance data and can be marked as static",
+                    "source": "roslyn:CA1822"
+                }
+            }
+        ]
+    }
+]
