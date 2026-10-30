@@ -1,0 +1,26 @@
+﻿[
+    {
+        "smell": "non-essential-comment",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Comments.cs",
+                "details": {
+                    "file": "Samples/Comments.cs",
+                    "line": 16,
+                    "message": "single-line comment: \u0022// add the two numbers and return the result\u0022",
+                    "source": "comment:non-essential"
+                }
+            },
+            {
+                "key": "Samples/Comments.cs",
+                "details": {
+                    "file": "Samples/Comments.cs",
+                    "line": 20,
+                    "message": "block-line comment: \u0022/* a block comment that explains nothing */\u0022",
+                    "source": "comment:non-essential"
+                }
+            }
+        ]
+    }
+]

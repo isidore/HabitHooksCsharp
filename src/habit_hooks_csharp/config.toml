@@ -1,7 +1,15 @@
 language = "csharp"
-files = ["**/*.cs"]
-sensors = ["roslyn", "comment"]
+# `bin/` and `obj/` hold build output and generated code (AssemblyInfo.cs, GlobalUsings.g.cs)
+# that the project did not write. Named as `*.cs` because a plugin's exclusions bind every
+# active plugin's globs.
+files = ["**/*.cs", "!**/bin/**/*.cs", "!**/obj/**/*.cs"]
+sensors = ["roslyn", "comment", "smells"]
 transformers = []
+
+# Every sensor runs the plugin's .NET tool; the roslyn sensor also runs `dotnet build`.
+detectors = [
+  { name = "dotnet", kind = "command", install = "Install the .NET SDK: https://dotnet.microsoft.com/download" },
+]
 
 [runners]
 cs = "dotnet"

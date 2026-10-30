@@ -1,0 +1,2 @@
+# Structural smells read from the syntax tree; no build needed.
+argv = ["${detector:dotnet}", "${dir}/../csharp-tool/bin/Release/net8.0/csharp-tool.dll", "smells", "--", "${files}"]

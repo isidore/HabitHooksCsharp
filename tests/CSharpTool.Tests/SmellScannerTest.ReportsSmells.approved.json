@@ -1,0 +1,95 @@
+﻿[
+    {
+        "smell": "too-many-parameters",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 5,
+                    "message": "Shapes has 4 parameters (reported at 4 or more)",
+                    "source": "csharp:too-many-parameters"
+                }
+            },
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 9,
+                    "message": "Volume has 4 parameters (reported at 4 or more)",
+                    "source": "csharp:too-many-parameters"
+                }
+            }
+        ]
+    },
+    {
+        "smell": "oversized-function",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 11,
+                    "message": "Long has 12 statements (reported at 12 or more)",
+                    "source": "csharp:oversized-function"
+                }
+            },
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 56,
+                    "message": "Classify has 12 statements (reported at 12 or more)",
+                    "source": "csharp:oversized-function"
+                }
+            }
+        ]
+    },
+    {
+        "smell": "deep-nesting",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 39,
+                    "message": "\u0060if\u0060 nested 3 deep (reported at 3 or more)",
+                    "source": "csharp:deep-nesting"
+                }
+            }
+        ]
+    },
+    {
+        "smell": "high-complexity",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 56,
+                    "message": "Classify has cyclomatic complexity 10 (reported at 10 or more)",
+                    "source": "csharp:high-complexity"
+                }
+            }
+        ]
+    },
+    {
+        "smell": "swallowed-exception",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 74,
+                    "message": "empty catch block",
+                    "source": "csharp:swallowed-exception"
+                }
+            }
+        ]
+    }
+]

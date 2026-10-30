@@ -1,1 +1,4 @@
-argv = ["dotnet", "${dir}/../comment-tool/bin/Release/net8.0/comment-tool.dll", "${files}"]
+# Flags go in the project's `[sensors.comment] args`:
+#   --include-file-header   also report the comments a file opens with (license headers)
+#   --include-doc-comments  also report `///` XML doc comments
+argv = ["${detector:dotnet}", "${dir}/../csharp-tool/bin/Release/net8.0/csharp-tool.dll", "comments", "${args}", "--", "${files}"]

@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: astral-sh/setup-uv@v6
+      - name: Test csharp-tool
+        run: dotnet test HabitHooksCsharp.slnx
+      - name: Build the wheel
+        run: uv build --wheel
+      - name: Run the plugin on its own test samples
+        shell: bash
+        run: |
+          uv tool install habit-hooks --with dist/*.whl
+          cd tests/CSharpTool.Tests/Samples
+          mkdir -p .habit-hooks
+          printf 'plugins = ["csharp"]\nfiles = ["*.cs"]\n[sensors.roslyn]\ndisabled = true\n' > .habit-hooks/config.toml
+          habit-hooks --file Smells.cs | tee output.txt || true
+          grep -q 'too-many-parameters' output.txt

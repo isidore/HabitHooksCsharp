@@ -2,8 +2,17 @@
 name = "habit-hooks-csharp"
 version = "0.1.0"
 description = "The C# Habit Hooks plugin"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["habit-hooks", "csharp", "dotnet", "roslyn", "code-smells", "refactoring", "ai-coding-agents"]
 requires-python = ">=3.11"
 dependencies = []
+
+[project.urls]
+Repository = "https://github.com/isidore/HabitHooksCsharp"
+Issues = "https://github.com/isidore/HabitHooksCsharp/issues"
+"Habit Hooks" = "https://github.com/habit-hooks/habit-hooks"
 
 [project.entry-points."habit_hooks.plugins"]
 csharp = "habit_hooks_csharp"
@@ -14,4 +23,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/habit_hooks_csharp"]
-artifacts = ["src/habit_hooks_csharp/comment-tool/bin/Release/net8.0/*"]
+artifacts = ["src/habit_hooks_csharp/csharp-tool/bin/Release/net8.0/*"]
+
+[tool.hatch.build.hooks.custom]

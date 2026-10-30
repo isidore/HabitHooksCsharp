@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/habit_hooks_csharp/">
+    <Project Path="src/habit_hooks_csharp/csharp-tool/csharp-tool.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CSharpTool.Tests/CSharpTool.Tests.csproj" />
+  </Folder>
+</Solution>
