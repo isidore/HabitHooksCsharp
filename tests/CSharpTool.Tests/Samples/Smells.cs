@@ -29,4 +29,27 @@ public class Shapes
         var a = 1;
         return a;
     }
+
+    public int Nested(int[] values)
+    {
+        foreach (var value in values)
+        {
+            if (value > 0)
+            {
+                if (value > 10)
+                {
+                    return value;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public string ElseIfChain(int value)
+    {
+        if (value > 2) return "big";
+        else if (value > 1) return "medium";
+        else if (value > 0) return "small";
+        else return "none";
+    }
 }

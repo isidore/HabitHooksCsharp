@@ -9,6 +9,7 @@ public static class SmellScanner
 {
     const int MaxParameters = 4;
     const int MaxStatements = 12;
+    const int MaxNesting = 3;
 
     public static string Scan(IEnumerable<string> paths)
     {
@@ -33,6 +34,7 @@ public static class SmellScanner
         var root = tree.GetRoot();
         return TooManyParameters(root)
             .Concat(OversizedMethods(root))
+            .Concat(DeepNesting(root))
             .Select(smell => smell.ToIssue(path, tree));
     }
 
@@ -48,6 +50,27 @@ public static class SmellScanner
             .Where(m => m.statements >= MaxStatements)
             .Select(m => new Smell("oversized-function", m.method,
                 $"{NameOf(m.method)} has {m.statements} statements (reported at {MaxStatements} or more)"));
+
+    // Reports the control statement that first reaches the limit, not every one inside it.
+    static IEnumerable<Smell> DeepNesting(SyntaxNode root) =>
+        root.DescendantNodes().OfType<StatementSyntax>()
+            .Where(IsNesting)
+            .Where(statement => NestingDepth(statement) == MaxNesting)
+            .Select(statement => new Smell("deep-nesting", statement,
+                $"`{statement.GetFirstToken().Text}` nested {MaxNesting} deep (reported at {MaxNesting} or more)"));
+
+    static bool IsNesting(SyntaxNode node) => node is IfStatementSyntax
+        or ForStatementSyntax or ForEachStatementSyntax or WhileStatementSyntax or DoStatementSyntax
+        or SwitchStatementSyntax or TryStatementSyntax;
+
+    // `else if` continues its chain rather than nesting inside it.
+    static bool IsElseIf(SyntaxNode node) => node is IfStatementSyntax && node.Parent is ElseClauseSyntax;
+
+    static int NestingDepth(SyntaxNode statement) =>
+        statement.AncestorsAndSelf()
+            .TakeWhile(node => node is not BaseMethodDeclarationSyntax and not LocalFunctionStatementSyntax
+                and not AnonymousFunctionExpressionSyntax)
+            .Count(node => IsNesting(node) && !IsElseIf(node));
 
     // Statements in the body, not counting the braces of blocks themselves.
     static int StatementCount(BaseMethodDeclarationSyntax method) =>

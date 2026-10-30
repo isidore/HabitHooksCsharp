@@ -37,5 +37,20 @@
                 }
             }
         ]
+    },
+    {
+        "smell": "deep-nesting",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 39,
+                    "message": "\u0060if\u0060 nested 3 deep (reported at 3 or more)",
+                    "source": "csharp:deep-nesting"
+                }
+            }
+        ]
     }
 ]
