@@ -22,5 +22,20 @@
                 }
             }
         ]
+    },
+    {
+        "smell": "oversized-function",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 11,
+                    "message": "Long has 12 statements (reported at 12 or more)",
+                    "source": "csharp:oversized-function"
+                }
+            }
+        ]
     }
 ]

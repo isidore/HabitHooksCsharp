@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 public static class SmellScanner
 {
     const int MaxParameters = 4;
+    const int MaxStatements = 12;
 
     public static string Scan(IEnumerable<string> paths)
     {
@@ -30,14 +31,30 @@ public static class SmellScanner
     {
         var tree = CSharpSyntaxTree.ParseText(File.ReadAllText(path), path: path);
         var root = tree.GetRoot();
-        return TooManyParameters(root).Select(smell => smell.ToIssue(path, tree));
+        return TooManyParameters(root)
+            .Concat(OversizedMethods(root))
+            .Select(smell => smell.ToIssue(path, tree));
     }
 
     static IEnumerable<Smell> TooManyParameters(SyntaxNode root) =>
-        root.DescendantNodes().OfType<BaseMethodDeclarationSyntax>()
+        Methods(root)
             .Where(method => method.ParameterList.Parameters.Count >= MaxParameters)
             .Select(method => new Smell("too-many-parameters", method,
                 $"{NameOf(method)} has {method.ParameterList.Parameters.Count} parameters (reported at {MaxParameters} or more)"));
+
+    static IEnumerable<Smell> OversizedMethods(SyntaxNode root) =>
+        Methods(root)
+            .Select(method => (method, statements: StatementCount(method)))
+            .Where(m => m.statements >= MaxStatements)
+            .Select(m => new Smell("oversized-function", m.method,
+                $"{NameOf(m.method)} has {m.statements} statements (reported at {MaxStatements} or more)"));
+
+    // Statements in the body, not counting the braces of blocks themselves.
+    static int StatementCount(BaseMethodDeclarationSyntax method) =>
+        method.DescendantNodes().OfType<StatementSyntax>().Count(statement => statement is not BlockSyntax);
+
+    static IEnumerable<BaseMethodDeclarationSyntax> Methods(SyntaxNode root) =>
+        root.DescendantNodes().OfType<BaseMethodDeclarationSyntax>();
 
     static string NameOf(BaseMethodDeclarationSyntax method) => method switch
     {
