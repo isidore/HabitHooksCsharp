@@ -1,6 +1,6 @@
 [project]
 name = "habit-hooks-csharp"
-version = "0.1.0"
+version = "0.0.0"
 description = "The C# Habit Hooks plugin"
 readme = "README.md"
 license = "MIT"
