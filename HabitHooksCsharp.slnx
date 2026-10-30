@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/habit_hooks_csharp/">
+    <Project Path="src/habit_hooks_csharp/comment-tool/comment-tool.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CommentTool.Tests/CommentTool.Tests.csproj" />
+  </Folder>
+</Solution>
