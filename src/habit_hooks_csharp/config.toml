@@ -3,12 +3,12 @@ files = ["**/*.cs"]
 sensors = ["roslyn", "comment"]
 transformers = []
 
-[runners]
-cs = "dotnet"
-
 # The comment sensor runs a .NET tool and the roslyn sensor runs `dotnet build`;
 # the roslyn sensor also shapes the build warnings with jq.
 detectors = [
   { name = "dotnet", kind = "command", install = "Install the .NET SDK: https://dotnet.microsoft.com/download" },
   { name = "jq", kind = "command", install = "brew install jq" },
 ]
+
+[runners]
+cs = "dotnet"
