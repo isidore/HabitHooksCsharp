@@ -1,0 +1,26 @@
+﻿[
+    {
+        "smell": "too-many-parameters",
+        "details": {},
+        "issues": [
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 5,
+                    "message": "Shapes has 4 parameters (reported at 4 or more)",
+                    "source": "csharp:too-many-parameters"
+                }
+            },
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 9,
+                    "message": "Volume has 4 parameters (reported at 4 or more)",
+                    "source": "csharp:too-many-parameters"
+                }
+            }
+        ]
+    }
+]

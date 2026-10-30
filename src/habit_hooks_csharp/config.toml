@@ -1,6 +1,6 @@
 language = "csharp"
 files = ["**/*.cs"]
-sensors = ["roslyn", "comment"]
+sensors = ["roslyn", "comment", "smells"]
 transformers = []
 
 # The comment sensor runs a .NET tool and the roslyn sensor runs `dotnet build`;
