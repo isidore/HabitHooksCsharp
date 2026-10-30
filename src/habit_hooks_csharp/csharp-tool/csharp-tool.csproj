@@ -8,6 +8,9 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <RollForward>Major</RollForward>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- The tool is often built outside a git checkout (from the sdist), so skip SourceLink's git lookup. -->
+    <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+    <EnableSourceLink>false</EnableSourceLink>
   </PropertyGroup>
 
   <ItemGroup>
