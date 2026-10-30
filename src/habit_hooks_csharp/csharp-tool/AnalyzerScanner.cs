@@ -47,7 +47,8 @@ public static partial class AnalyzerScanner
 
     static AnalyzerIssue ToIssue(Match match, string root)
     {
-        var file = Path.GetRelativePath(root, Path.GetFullPath(match.Groups["file"].Value, root));
+        // Forward slashes on every OS, like the paths habit-hooks passes in.
+        var file = Path.GetRelativePath(root, Path.GetFullPath(match.Groups["file"].Value, root)).Replace('\\', '/');
         var rule = match.Groups["rule"].Value;
         var details = new IssueDetails(file, int.Parse(match.Groups["line"].Value),
             $"{rule}: {match.Groups["message"].Value}", "roslyn:" + rule);
