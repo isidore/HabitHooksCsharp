@@ -89,6 +89,15 @@
                     "message": "empty catch block",
                     "source": "csharp:swallowed-exception"
                 }
+            },
+            {
+                "key": "Samples/Smells.cs",
+                "details": {
+                    "file": "Samples/Smells.cs",
+                    "line": 92,
+                    "message": "empty catch block",
+                    "source": "csharp:swallowed-exception"
+                }
             }
         ]
     }

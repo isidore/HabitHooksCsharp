@@ -8,12 +8,13 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-slim, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
+          global-json-file: global.json
           dotnet-version: 8.0.x
       - uses: astral-sh/setup-uv@v6
       - name: Test csharp-tool

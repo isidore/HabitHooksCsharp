@@ -58,7 +58,17 @@ public static class SmellScanner
     static IEnumerable<Smell> SwallowedExceptions(SyntaxNode root) =>
         root.DescendantNodes().OfType<CatchClauseSyntax>()
             .Where(clause => clause.Block.Statements.Count == 0)
+            .Where(clause => !IsExpectedCancellation(clause))
             .Select(clause => new Smell("swallowed-exception", clause, "empty catch block"));
+
+    // `catch (OperationCanceledException) when (token.IsCancellationRequested) { }`
+    // stops quietly on a cancellation the code asked for, so it is not a smell.
+    static bool IsExpectedCancellation(CatchClauseSyntax clause) =>
+        clause.Declaration?.Type.ToString().Split('.').Last() == "OperationCanceledException"
+        && clause.Filter?.FilterExpression is MemberAccessExpressionSyntax
+        {
+            Name.Identifier.Text: "IsCancellationRequested"
+        };
 
     static IEnumerable<Smell> HighComplexity(SyntaxNode root) =>
         Methods(root)

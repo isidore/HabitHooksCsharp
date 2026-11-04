@@ -31,7 +31,7 @@ The `generic` plugin adds oversized files and duplication.
 | `oversized-function` | smells | a method has 12 or more statements |
 | `deep-nesting` | smells | `if`/`for`/`foreach`/`while`/`do`/`switch`/`try` nest 3 deep (`else if` doesn't add depth) |
 | `high-complexity` | smells | a method's cyclomatic complexity is 10 or more |
-| `swallowed-exception` | smells | a `catch` block has no statements |
+| `swallowed-exception` | smells | a `catch` block has no statements (except `catch (OperationCanceledException) when (token.IsCancellationRequested)`) |
 | `non-essential-comment` | comment | a comment is 10 or more characters (blocks: 15) |
 | `unused-member`, `unused-field`, `unused-private-member`, `unused-parameter`, `unused-variable`, `unused-import` | roslyn | the matching Roslyn analyzer warns (CA1822, CA1823, IDE0051, IDE0052, IDE0060, CS0168, CS0219, IDE0005) |
 | `high-coupling` | roslyn | CA1506 warns (a method coupled to 30 or more types) |

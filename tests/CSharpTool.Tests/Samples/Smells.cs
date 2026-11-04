@@ -79,4 +79,16 @@ public class Shapes
         try { stream.Dispose(); }
         catch (System.IO.IOException) { throw; }
     }
+
+    public async System.Threading.Tasks.Task StopWhenAsked(System.Threading.CancellationToken token)
+    {
+        try { await System.Threading.Tasks.Task.Delay(1000, token); }
+        catch (System.OperationCanceledException) when (token.IsCancellationRequested) { }
+    }
+
+    public async System.Threading.Tasks.Task HideCancellation(System.Threading.CancellationToken token)
+    {
+        try { await System.Threading.Tasks.Task.Delay(1000, token); }
+        catch (OperationCanceledException) { }
+    }
 }
