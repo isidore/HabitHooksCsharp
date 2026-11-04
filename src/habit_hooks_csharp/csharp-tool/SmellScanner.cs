@@ -44,8 +44,15 @@ public static class SmellScanner
     static IEnumerable<Smell> TooManyParameters(SyntaxNode root) =>
         Methods(root)
             .Where(method => method.ParameterList.Parameters.Count >= MaxParameters)
+            .Where(method => !IsDllImport(method))
             .Select(method => new Smell("too-many-parameters", method,
                 $"{NameOf(method)} has {method.ParameterList.Parameters.Count} parameters (reported at {MaxParameters} or more)"));
+
+    // P/Invoke signatures are dictated by the native library, so they can't be changed.
+    static bool IsDllImport(BaseMethodDeclarationSyntax method) =>
+        method.AttributeLists.SelectMany(list => list.Attributes)
+            .Select(attribute => attribute.Name.ToString().Split('.').Last())
+            .Any(name => name is "DllImport" or "DllImportAttribute" or "LibraryImport" or "LibraryImportAttribute");
 
     static IEnumerable<Smell> OversizedMethods(SyntaxNode root) =>
         Methods(root)

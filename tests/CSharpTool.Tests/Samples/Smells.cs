@@ -79,4 +79,7 @@ public class Shapes
         try { stream.Dispose(); }
         catch (System.IO.IOException) { throw; }
     }
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    static extern int MessageBox(System.IntPtr hWnd, string text, string caption, uint type);
 }
